@@ -14,3 +14,16 @@ def test2(i,j):
 
 x = test2(4,4)
 print x
+
+x,y,z = test2(5,6)
+print x
+print y
+print z
+
+
+i = 6
+j = 7
+i,j = j,i #交换i和j的值
+
+print i
+print j
