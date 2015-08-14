@@ -50,3 +50,29 @@ resizeColumnsToContents();                      根据内容调整列宽
 resizeColumnToContents(int col);               根据内容自动调整给定列宽
 horizontalHeader()->setResizeMode           把给定列设置为给定模式
 主要模式有Stretch和Fixed
+
+
+
+选择多行：
+
+在选择多行中，每次选择的是所有item的计数，要想获得行计数以及行号，可有以下方式：
+1、使用容器，可过滤相同的行
+{
+	QModelIndexList row_list = ui.DEM_table->selectionModel()->selectedIndexes();
+	QMap<int,int> rowMap;
+
+	foreach(QModelIndex index, row_list)
+	{
+		rowMap.insert(index.row(), 0);
+	}
+
+	for (QMap<int, int>::iterator it = rowMap.begin(); it != rowMap.end(); it++)
+		select_rows.push_back(it.key());
+
+	std::sort(select_rows.begin(), select_rows.end(), std::less<int>());
+}
+即可得到行号相量select_rows;
+2、表声明成只能整行选择的：
+
+tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
+然后用 if(index.column==0) 只将第一列被选中的格子作为删除条件。也可以实现每行只删除一次的效果。
