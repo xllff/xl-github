@@ -58,3 +58,16 @@
 
 7、删除
 	rm file 在删除文件后，如果没有提交，使用git checkout -- filename,可以恢复文件
+
+
+查看远程仓库：
+git remote -v
+
+从远程仓库获得最新版本到本地
+git fetch origin master
+
+比较本地和远程仓库的区别
+git log -p master.. origin/master
+
+把远程下载的文件和本地合并
+git merge origin/master
